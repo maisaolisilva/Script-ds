@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import styled from "styled-components";
+import Formulario from "./components/Formulario";
 
 const StyledDiv = styled.div`
   display: flex;
@@ -76,6 +77,7 @@ const StyledDiv = styled.div`
         input{
           padding: 13px;
           border-radius: 20px;
+          color: #000000;
         }
       }
       button{
@@ -138,25 +140,8 @@ export default function Page() {
         <section className="chamada">
           <p>Pronto para ter um site profissional? Fale comigo e faça seu orçamento sem compromisso!</p>
         </section>
-        <form>
-          <div>
-            <label htmlFor="nome">Nome:</label>
-            <input type="text" name="nome" id="nome" placeholder="Escreva seu nome completo" required/>
-          </div>
-          <div>
-            <label htmlFor="email">E-mail:</label>
-            <input type="email" name="email" id="email" placeholder="seuemail@exemplo.com" required/>
-          </div>
-          <div>
-            <label htmlFor="telefone">Telefone:</label>
-            <input type="tel" name="telefone" id="telefone" placeholder="2499999-9999" />
-          </div>
-          <button>Solicitar Orçamento</button>
-        </form>
+        <Formulario />
         <p className="aviso">Os seus dados serão utilizados apenas para responder ao seu pedido. Não partilhamos informações com terceiros.</p>
-        <section className="chamada">
-          <p>Ao clicar no botão “solicitar Orçamento” será redirecionado diretamente para o meu whatsapp.</p>
-        </section>
       </main>
 
     </StyledDiv>
