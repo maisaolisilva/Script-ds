@@ -19,6 +19,11 @@ export default function Formulario() {
                 },
                 body: JSON.stringify({ email, nome, telefone}),
             });
+            if(response.ok) {
+                setEmail('');
+                setNome('');
+                setTelefone('');
+            }
         } catch(err) {
             console.error('Erro ao enviar dados:', err);
         }
