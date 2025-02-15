@@ -53,6 +53,49 @@ const StyledDiv = styled.div`
         }
       }
     }
+    .chamada{
+      font-size: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center; 
+      justify-content: center; 
+      text-align: justify; 
+      margin: 10px 20px;
+    }
+    form{
+      margin: 10px 20px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      div{
+        width: 100%;
+        display: flex;
+        margin-bottom: 12px;
+        flex-direction: column;
+        input{
+          padding: 13px;
+          border-radius: 20px;
+        }
+      }
+      button{
+        color: #000000;
+        background: #15f5ba;
+        padding: 15px;
+        border-radius: 20px;
+        
+      }
+    }
+    .aviso{
+      font-size: 16px;
+      text-decoration: underline;
+      display: flex;
+      flex-direction: column;
+      align-items: center; 
+      justify-content: center; 
+      text-align: justify; 
+      margin: 10px 20px;
+    }
 
   }
 `
@@ -63,8 +106,8 @@ export default function Page() {
       <header>
         <Image src="/script.svg"
         alt="Logo da empresa"
-          width={300}
-          height={300} />
+          width={200}
+          height={200} />
       </header>
      
       <main>
@@ -91,6 +134,28 @@ export default function Page() {
             <li><strong>Portfólios</strong> → Mostra o teu trabalho de forma impactante</li>
             <li><strong>Landing Pages & Hotsites</strong> → Páginas estratégicas para conversão</li>
           </ul>
+        </section>
+        <section className="chamada">
+          <p>Pronto para ter um site profissional? Fale comigo e faça seu orçamento sem compromisso!</p>
+        </section>
+        <form>
+          <div>
+            <label htmlFor="nome">Nome:</label>
+            <input type="text" name="nome" id="nome" placeholder="Escreva seu nome completo" required/>
+          </div>
+          <div>
+            <label htmlFor="email">E-mail:</label>
+            <input type="email" name="email" id="email" placeholder="seuemail@exemplo.com" required/>
+          </div>
+          <div>
+            <label htmlFor="telefone">Telefone:</label>
+            <input type="tel" name="telefone" id="telefone" placeholder="2499999-9999" />
+          </div>
+          <button>Solicitar Orçamento</button>
+        </form>
+        <p className="aviso">Os seus dados serão utilizados apenas para responder ao seu pedido. Não partilhamos informações com terceiros.</p>
+        <section className="chamada">
+          <p>Ao clicar no botão “solicitar Orçamento” será redirecionado diretamente para o meu whatsapp.</p>
         </section>
       </main>
 
