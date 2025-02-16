@@ -32,6 +32,12 @@ export async function POST(req: Request) {
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Telefone:</strong> ${telefone}</p>
       `,
+    }, (error, info) => {
+        if (error) {
+          console.error("❌ Erro ao enviar email:", error);
+        } else {
+          console.log("✅ Email enviado com sucesso!", info);
+        }
     });
     console.log("✅ Email enviado com sucesso!", info); // Inclua o objeto info completo
 return NextResponse.json({ message: "Notificação enviada com sucesso!", info }, { status: 200 });
