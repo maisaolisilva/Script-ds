@@ -1,49 +1,41 @@
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+interface EmailRequest {
+  nome: string;
+  email: string;
+  telefone: string;
+}
 
 export async function POST(req: Request) {
   try {
-    const { nome, email, telefone } = await req.json();
+    const body: EmailRequest = await req.json();
 
-    if (!nome || !email || !telefone) {
+    if (!body.nome || !body.email || !body.telefone) {
       return NextResponse.json({ message: "Todos os campos são obrigatórios" }, { status: 400 });
     }
 
-    // Configuração do transporte SMTP
-    const transporter = nodemailer.createTransport({
-      host: process.env.EMAIL_HOST,
-      port: Number(process.env.EMAIL_PORT),
-      secure: true, // Usa STARTTLS
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
-
-    // Envia o email
-    const info = await transporter.sendMail({
-      from: `"Novo Cadastro" <${process.env.EMAIL_USER}>`,
-      to: "teuemail@gmail.com", // O email para onde será enviada a notificação
-      subject: "Novo Cadastro no Site 🚀",
-      text: `Nome: ${nome}\nEmail: ${email}\nTelefone: ${telefone}`,
+    // Envia o email usando o Resend
+    const response = await resend.emails.send({
+      from: `no-reply@teudominio.com`, // Usa o teu domínio verificado no Resend
+      to: "teuemail@gmail.com", // O teu email pessoal para receber notificações
+      subject: "Novo Pedido de Orçamento 🚀",
+      text: `Nome: ${body.nome}\nEmail: ${body.email}\nTelefone: ${body.telefone}`,
       html: `
         <h2>🚀 Novo Cadastro Recebido!</h2>
-        <p><strong>Nome:</strong> ${nome}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Telefone:</strong> ${telefone}</p>
+        <p><strong>Nome:</strong> ${body.nome}</p>
+        <p><strong>Email:</strong> ${body.email}</p>
+        <p><strong>Telefone:</strong> ${body.telefone}</p>
       `,
-    }, (error, info) => {
-        if (error) {
-          console.error("❌ Erro ao enviar email:", error);
-        } else {
-          console.log("✅ Email enviado com sucesso!", info);
-        }
     });
-    console.log("✅ Email enviado com sucesso!", info); // Inclua o objeto info completo
-return NextResponse.json({ message: "Notificação enviada com sucesso!", info }, { status: 200 });
+
+    console.log("✅ Email enviado com sucesso!", response);
+    return NextResponse.json({ message: "Email enviado com sucesso!", response }, { status: 200 });
 
   } catch (error) {
-    console.error("Erro ao enviar email:", error);
+    console.error("❌ Erro ao enviar email:", error);
     return NextResponse.json({ message: "Erro ao enviar email" }, { status: 500 });
   }
 }
