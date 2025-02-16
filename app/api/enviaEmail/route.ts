@@ -19,7 +19,7 @@ export async function POST(req: Request) {
 
     // Envia o email usando o Resend
     const response = await resend.emails.send({
-      from: `scriptdesenvolvimento.com.br`, // Usa o teu domínio verificado no Resend
+      from: `contato@scriptdesenvolvimento.com.br`, // Usa o teu domínio verificado no Resend
       to: "scriptdesenvolvimento@gmail.com", // O teu email pessoal para receber notificações
       subject: "Novo Pedido de Orçamento 🚀",
       text: `Nome: ${body.nome}\nEmail: ${body.email}\nTelefone: ${body.telefone}`,
