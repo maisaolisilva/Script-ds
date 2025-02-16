@@ -23,6 +23,7 @@ export default function Formulario() {
                 setEmail('');
                 setNome('');
                 setTelefone('');
+                alert("Dados enviados");
             }
         } catch(err) {
             console.error('Erro ao enviar dados:', err);
