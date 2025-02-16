@@ -14,7 +14,9 @@ const clienteSchema = new Schema<ICliente>({
     },
     email: {
         type: String,
-        required: [true, 'E-mail é obrigatório']
+        required: [true, 'E-mail é obrigatório'],
+        unique: true,
+        index: true
     },
     telefone: {
         type: String,
