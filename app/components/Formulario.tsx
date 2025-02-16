@@ -10,8 +10,15 @@ export default function Formulario() {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        const dadosDoFormulario = {
+            nome,
+            email,
+            telefone,
+          };
     
         try{
+            //chama API para cadastrar cliente
             const response = await fetch('/api/cliente', {
                 method: 'POST',
                 headers: {
@@ -20,10 +27,24 @@ export default function Formulario() {
                 body: JSON.stringify({ email, nome, telefone}),
             });
             if(response.ok) {
-                setEmail('');
-                setNome('');
-                setTelefone('');
-                alert("Dados enviados");
+                console.log("cliente cadastrado")
+                //se o cadastro for bem sucedido, envia um e-mail notificando atravez da API enviaEmail
+                const responseEmail = await fetch("/api/enviaEmail", {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(dadosDoFormulario),
+                });
+                if (responseEmail.ok) {
+                    console.log("Email enviado com sucesso!");
+                    setEmail('');
+                    setNome('');
+                    setTelefone('');
+                    alert("Dados enviados e email enviado com sucesso!");
+                } else {
+                    console.error("Erro ao enviar email");
+                }
             }
         } catch(err) {
             console.error('Erro ao enviar dados:', err);

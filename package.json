@@ -12,6 +12,7 @@
     "mongodb": "^6.13.0",
     "mongoose": "^8.10.1",
     "next": "15.1.7",
+    "nodemailer": "^6.10.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "styled-components": "^6.1.15"
@@ -19,6 +20,7 @@
   "devDependencies": {
     "@types/mongoose": "^5.11.96",
     "@types/node": "^20.17.19",
+    "@types/nodemailer": "^6.4.17",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "postcss": "^8",
