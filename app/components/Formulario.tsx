@@ -53,7 +53,8 @@ export default function Formulario() {
                 <input value={telefone} 
                     type="tel" name="telefone" id="telefone" 
                     placeholder="2499999-9999" 
-                    onChange={(e) => setTelefone(e.target.value)}/>
+                    onChange={(e) => setTelefone(e.target.value)}
+                    required/>
             </div>
             <button type="submit">Solicitar Orçamento</button>
       </form>
