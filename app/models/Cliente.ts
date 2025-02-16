@@ -5,6 +5,8 @@ interface ICliente extends mongoose.Document {
     nome: string;
     email: string;
     telefone: string;
+    createdAt: Date;
+    updatedAt: Date;
 }
 
 const clienteSchema = new Schema<ICliente>({
@@ -21,10 +23,10 @@ const clienteSchema = new Schema<ICliente>({
     telefone: {
         type: String,
         required: [true, 'O número de telefone é obrigatório'],
-        match: [/^\d{10,11}$/, 'Número de telefone inválido'], // Valida telefone com 10 ou 11 dígitos
+        match: [/^\d{10,11}$/, 'Número de telefone inválido']
     }
-})
+}, { timestamps: true });
 
-const Cliente = models.Cliente || model<ICliente>('Cliente', clienteSchema)
+const Cliente = models.Cliente || model<ICliente>('Cliente', clienteSchema);
 
 export default Cliente;
