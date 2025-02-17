@@ -108,8 +108,8 @@ export default function Page() {
       <header>
         <Image src="/script.svg"
         alt="Logo da empresa"
-          width={200}
-          height={200} />
+          width={150}
+          height={150} />
       </header>
      
       <main>
@@ -126,14 +126,14 @@ export default function Page() {
             <h2>Serviços oferecidos:</h2>
             <Image src="/www.svg"
             alt="imagem com uma tela de computador sendo apontada por um cursor"
-            width={136}
-            height={136} />
+            width={130}
+            height={130} />
           </div>
           <ul>
-            <li><strong>Institucionais</strong> → Apresenta a tua empresa de forma profissional</li>
+            <li><strong>Institucionais</strong> → Site que apresenta a sua empresa de forma profissional</li>
             <li><strong>Lojas Virtuais</strong> → Vende online com um e-commerce eficiente</li>
-            <li><strong>Blogs & Portais</strong> → Constrói a tua autoridade com um blog otimizado</li>
-            <li><strong>Portfólios</strong> → Mostra o teu trabalho de forma impactante</li>
+            <li><strong>Blogs & Portais</strong> → Constrói a sua autoridade com um blog otimizado</li>
+            <li><strong>Portfólios</strong> → Mostra o seu trabalho de forma impactante</li>
             <li><strong>Landing Pages & Hotsites</strong> → Páginas estratégicas para conversão</li>
           </ul>
         </section>
