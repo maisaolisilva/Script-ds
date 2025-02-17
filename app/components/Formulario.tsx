@@ -14,6 +14,7 @@ export default function Formulario() {
     const [telefone, setTelefone] = useState<string>('');
     const [errors, setErrors] = useState<Erros>({ nome: '', email: '', telefone: '' });
     const [loading, setLoading] = useState<boolean>(false);
+    const [mensagem, setMensagem] = useState<string | null>(null);
 
     const validarEmail = (email: string): boolean => {
         const regex = /^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,}$/;
@@ -32,6 +33,7 @@ export default function Formulario() {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true);
+        setMensagem(null);
 
         const novosErros: Erros = {
             nome: validarNome(nome) ? '' : 'O nome deve conter pelo menos dois nomes.',
@@ -55,26 +57,20 @@ export default function Formulario() {
                 body: JSON.stringify(dadosDoFormulario),
             });
             
-            if (response.ok) {
+            const data = await response.json();
+            
+            if (!response.ok) {
+                setMensagem(data.message);
+            } else {
                 console.log("Cliente cadastrado");
-                const responseEmail = await fetch("/api/enviaEmail", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(dadosDoFormulario),
-                });
-                
-                if (responseEmail.ok) {
-                    console.log("Email enviado com sucesso!");
-                    setEmail('');
-                    setNome('');
-                    setTelefone('');
-                    alert("Dados enviados e email enviado com sucesso!");
-                } else {
-                    console.error("Erro ao enviar email");
-                }
+                setEmail('');
+                setNome('');
+                setTelefone('');
+                setMensagem("Dados enviados e email enviado com sucesso!");
             }
         } catch (err) {
             console.error('Erro ao enviar dados:', err);
+            setMensagem("Erro ao enviar os dados.");
         } finally {
             setLoading(false);
         }
@@ -105,6 +101,7 @@ export default function Formulario() {
                 {loading ? "Enviando..." : "Solicitar Orçamento"}
             </button>
             {loading && <p>Processando...</p>}
+            {mensagem && <p style={{ color: mensagem.includes("sucesso") ? 'green' : 'red' }}>{mensagem}</p>}
         </form>
     );
 }
