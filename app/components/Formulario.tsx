@@ -13,6 +13,7 @@ export default function Formulario() {
     const [nome, setNome] = useState<string>('');
     const [telefone, setTelefone] = useState<string>('');
     const [errors, setErrors] = useState<Erros>({ nome: '', email: '', telefone: '' });
+    const [loading, setLoading] = useState<boolean>(false);
 
     const validarEmail = (email: string): boolean => {
         const regex = /^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,}$/;
@@ -30,6 +31,7 @@ export default function Formulario() {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setLoading(true);
 
         const novosErros: Erros = {
             nome: validarNome(nome) ? '' : 'O nome deve conter pelo menos dois nomes.',
@@ -40,6 +42,7 @@ export default function Formulario() {
         setErrors(novosErros);
         
         if (Object.values(novosErros).some((erro) => erro !== '')) {
+            setLoading(false);
             return;
         }
     
@@ -72,6 +75,8 @@ export default function Formulario() {
             }
         } catch (err) {
             console.error('Erro ao enviar dados:', err);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -92,7 +97,14 @@ export default function Formulario() {
                 <input value={telefone} type="tel" name="telefone" id="telefone" placeholder="24999999999" onChange={(e) => setTelefone(e.target.value.replace(/\D/g, ''))} required />
                 {errors.telefone && <p style={{ color: 'red' }}>{errors.telefone}</p>}
             </div>
-            <button type="submit">Solicitar Orçamento</button>
+            <button 
+                type="submit" 
+                disabled={loading} 
+                style={{ opacity: loading ? 0.5 : 1 }}
+            >
+                {loading ? "Enviando..." : "Solicitar Orçamento"}
+            </button>
+            {loading && <p>Processando...</p>}
         </form>
     );
 }
