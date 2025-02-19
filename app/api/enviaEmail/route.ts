@@ -19,7 +19,7 @@ export async function POST(req: Request) {
 
     // Envia o email usando o Resend
     const response = await resend.emails.send({
-      from: `contato@scriptdesenvolvimento.com.br`, // Usa o teu domínio verificado no Resend
+      from: `contato@scriptdesenvolvimento.com.br`, // domínio verificado no Resend
       to: "scriptdesenvolvimento@gmail.com", // O teu email pessoal para receber notificações
       subject: "Novo Pedido de Orçamento 🚀",
       text: `Nome: ${body.nome}\nEmail: ${body.email}\nTelefone: ${body.telefone}`,
@@ -33,7 +33,7 @@ export async function POST(req: Request) {
 
     //Envia e-mail para o cliente.
     const clienteEmail = await resend.emails.send({
-      from: `no-reply@teudominio.com`, // Usa o teu domínio verificado no Resend
+      from: `contato@scriptdesenvolvimento.com.br`, // domínio verificado no Resend
       to: body.email, // Email do cliente cadastrado
       subject: "Confirmação de Pedido de Orçamento ✅",
       text: `Olá ${body.nome}, recebemos sua solicitação de orçamento! Logo entraremos em contato.`,
