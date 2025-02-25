@@ -61,12 +61,21 @@ export default function Formulario() {
             
             if (!response.ok) {
                 setMensagem(data.message);
+                
             } else {
                 console.log("Cliente cadastrado");
+                const responseEmail = await fetch('/api/enviaEmail', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(dadosDoFormulario),
+                  });
                 setEmail('');
                 setNome('');
                 setTelefone('');
-                setMensagem("Dados enviados e email enviado com sucesso!");
+                if(responseEmail.ok){
+                    setMensagem("Dados enviados e email enviado com sucesso!");
+                }
+                
             }
         } catch (err) {
             console.error('Erro ao enviar dados:', err);
