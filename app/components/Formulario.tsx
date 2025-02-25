@@ -34,15 +34,15 @@ export default function Formulario() {
         e.preventDefault();
         setLoading(true);
         setMensagem(null);
-
+    
         const novosErros: Erros = {
             nome: validarNome(nome) ? '' : 'O nome deve conter pelo menos dois nomes.',
             email: validarEmail(email) ? '' : 'O email não é válido.',
             telefone: validarTelefone(telefone) ? '' : 'O telefone deve conter apenas números e ter 10 ou 11 dígitos.',
         };
-
+    
         setErrors(novosErros);
-        
+    
         if (Object.values(novosErros).some((erro) => erro !== '')) {
             setLoading(false);
             return;
@@ -51,39 +51,52 @@ export default function Formulario() {
         const dadosDoFormulario = { nome, email, telefone };
     
         try {
-            const response = await fetch('/api/cliente', {
+            console.log("📩 Enviando dados para /api/cliente...");
+            const responseCliente = await fetch('/api/cliente', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(dadosDoFormulario),
             });
-            
-            const data = await response.json();
-            
-            if (!response.ok) {
-                setMensagem(data.message);
-                
-            } else {
-                console.log("Cliente cadastrado");
-                const responseEmail = await fetch('/api/enviaEmail', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(dadosDoFormulario),
-                  });
-                setEmail('');
-                setNome('');
-                setTelefone('');
-                if(responseEmail.ok){
-                    setMensagem("Dados enviados e email enviado com sucesso!");
-                }
-                
+    
+            const dataCliente = await responseCliente.json();
+            console.log("📩 Resposta de /api/cliente:", dataCliente);
+    
+            if (!responseCliente.ok) {
+                console.error("❌ Erro no cadastro do cliente:", dataCliente.message);
+                setMensagem(dataCliente.message);
+                return;
             }
+    
+            console.log("✅ Cliente cadastrado com sucesso. Agora enviando email...");
+            
+            const responseEmail = await fetch('/api/enviaEmail', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(dadosDoFormulario),
+            });
+    
+            console.log("📩 Resposta de /api/enviaEmail:", responseEmail);
+    
+            if (responseEmail.ok) {
+                console.log("✅ Email enviado com sucesso!");
+                setMensagem("Dados enviados e email enviado com sucesso!");
+            } else {
+                console.error("❌ Erro ao enviar email.");
+                setMensagem("Erro ao enviar email.");
+            }
+    
+            setEmail('');
+            setNome('');
+            setTelefone('');
+    
         } catch (err) {
-            console.error('Erro ao enviar dados:', err);
+            console.error('❌ Erro ao enviar dados:', err);
             setMensagem("Erro ao enviar os dados.");
         } finally {
             setLoading(false);
         }
     };
+    
 
     return (
         <form onSubmit={handleSubmit}>
