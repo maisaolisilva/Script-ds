@@ -53,7 +53,7 @@ export async function POST(req: Request) {
         <p>Em breve falaremos mais sobre o seu projeto!</p>
         <p>Cumprimentos,</p>
         <p>Maisa</p>
-        <p>SCRIPT - Desenvolvimento de Sites Ltda</p>
+        <p>SCRIPT - Desenvolvimento de Sftwares Ltda</p>
               `,
     });
 
