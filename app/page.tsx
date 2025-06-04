@@ -108,7 +108,7 @@ const StyledDiv = styled.div`
   }
 
   @media (max-width: 841px){
-    margin: 0 50px;
+    margin: 0 30px;
     .logo {
       width: 100px;
       height: 100px;
