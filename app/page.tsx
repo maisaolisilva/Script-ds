@@ -92,7 +92,7 @@ const StyledDiv = styled.div`
       align-items: center; 
       justify-content: center; 
       text-align: justify; 
-      margin: 33px 20px 20px;
+      margin: 33px 10px 20px;
     }
     
     .aviso{
@@ -108,32 +108,35 @@ const StyledDiv = styled.div`
   }
 
   @media (max-width: 841px){
-   .logo {
-    width: 100px;
-    height: 100px;
-   }
-   header {
-    display: flex;
-    flex-direction: column;
-    div {
-      gap: 40px;
-      a {
-      font-size: 20px;
+    .logo {
+      width: 100px;
+      height: 100px;
     }
-    }
-   }
-   main{
-    .apresentacao {
-      margin-top: 50px;
+    header {
       display: flex;
       flex-direction: column;
-      justify-items: center;
-      align-items: center;
-      .apresentacao-texto {
-        font-size: 24px;
+      div {
+        gap: 40px;
+        a {
+        font-size: 20px;
+      }
       }
     }
-  }    
+    main{
+      .apresentacao {
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+        align-items: center;
+        .apresentacao-texto {
+          font-size: 24px;
+        }
+      }
+      .contato {
+
+      }
+    }    
   }
 
 `
