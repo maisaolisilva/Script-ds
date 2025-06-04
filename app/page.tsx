@@ -157,7 +157,7 @@ export default function Page() {
       </header>
       <div className="linha"></div>
       <main>
-        <h1>Precisa de resultados com sites na internet? <br /> Nos desenvolvemos!</h1>
+        <h1>Precisa de resultados com sites na internet? <br /> Nós desenvolvemos!</h1>
         <section id="apresentacao" className="apresentacao">
           <div>
             <p className="apresentacao-texto">Desenvolvemos sites personalizados para pequenas e médias empresas, empreendedores e criadores de conteúdo.</p>
