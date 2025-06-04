@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from "react";
+import styled from "styled-components";
 
 interface Erros {
     nome: string;
@@ -97,33 +98,64 @@ export default function Formulario() {
         }
     };
     
-
+    const StyledDiv = styled.div`
+        form{
+              margin: 10px 20px;
+              display: flex;
+              justify-content: center;
+              flex-direction: column;
+              align-items: center;
+              div{
+                width: 100%;
+                display: flex;
+                margin-bottom: 12px;
+                flex-direction: column;
+                input{
+                  padding: 13px;
+                  border-radius: 20px;
+                  color: #000000;
+                }
+              }
+              button{
+                color: #000000;
+                background: #15f5ba;
+                padding: 15px;
+                border-radius: 20px;
+                &:hover {
+                    text-decoration: underline;
+                    background: #1acb9c;
+                }
+              }
+            }
+    `
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="nome">Nome:</label>
-                <input value={nome} type="text" name="nome" id="nome" placeholder="Escreva seu nome completo" onChange={(e) => setNome(e.target.value)} required />
-                {errors.nome && <p style={{ color: 'red' }}>{errors.nome}</p>}
-            </div>
-            <div>
-                <label htmlFor="email">E-mail:</label>
-                <input value={email} type="email" name="email" id="email" placeholder="seuemail@exemplo.com" onChange={(e) => setEmail(e.target.value)} required />
-                {errors.email && <p style={{ color: 'red' }}>{errors.email}</p>}
-            </div>
-            <div>
-                <label htmlFor="telefone">Telefone:</label>
-                <input value={telefone} type="tel" name="telefone" id="telefone" placeholder="24999999999" onChange={(e) => setTelefone(e.target.value.replace(/\D/g, ''))} required />
-                {errors.telefone && <p style={{ color: 'red' }}>{errors.telefone}</p>}
-            </div>
-            <button 
-                type="submit" 
-                disabled={loading} 
-                style={{ opacity: loading ? 0.5 : 1 }}
-            >
-                {loading ? "Enviando..." : "Solicitar Orçamento"}
-            </button>
-            {loading && <p>Processando...</p>}
-            {mensagem && <p style={{ color: mensagem.includes("sucesso") ? 'green' : 'red' }}>{mensagem}</p>}
-        </form>
+        <StyledDiv>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label htmlFor="nome">Nome:</label>
+                    <input value={nome} type="text" name="nome" id="nome" placeholder="Escreva seu nome completo" onChange={(e) => setNome(e.target.value)} required />
+                    {errors.nome && <p style={{ color: 'red' }}>{errors.nome}</p>}
+                </div>
+                <div>
+                    <label htmlFor="email">E-mail:</label>
+                    <input value={email} type="email" name="email" id="email" placeholder="seuemail@exemplo.com" onChange={(e) => setEmail(e.target.value)} required />
+                    {errors.email && <p style={{ color: 'red' }}>{errors.email}</p>}
+                </div>
+                <div>
+                    <label htmlFor="telefone">Telefone:</label>
+                    <input value={telefone} type="tel" name="telefone" id="telefone" placeholder="24999999999" onChange={(e) => setTelefone(e.target.value.replace(/\D/g, ''))} required />
+                    {errors.telefone && <p style={{ color: 'red' }}>{errors.telefone}</p>}
+                </div>
+                <button
+                    type="submit"
+                    disabled={loading}
+                    style={{ opacity: loading ? 0.5 : 1 }}
+                >
+                    {loading ? "Enviando..." : "Solicitar Orçamento"}
+                </button>
+                {loading && <p>Processando...</p>}
+                {mensagem && <p style={{ color: mensagem.includes("sucesso") ? 'green' : 'red' }}>{mensagem}</p>}
+            </form>
+        </StyledDiv>
     );
 }
