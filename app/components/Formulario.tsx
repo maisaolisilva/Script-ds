@@ -127,6 +127,13 @@ export default function Formulario() {
                 }
               }
             }
+            @media (max-width: 841px) {
+                form {
+                    div {
+                        width: 100%;
+                    }
+                }
+            }
     `
     return (
         <StyledDiv>
