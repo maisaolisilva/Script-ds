@@ -108,6 +108,7 @@ const StyledDiv = styled.div`
   }
 
   @media (max-width: 841px){
+    margin: 0 50px;
     .logo {
       width: 100px;
       height: 100px;
@@ -132,9 +133,6 @@ const StyledDiv = styled.div`
         .apresentacao-texto {
           font-size: 24px;
         }
-      }
-      .contato {
-
       }
     }    
   }
