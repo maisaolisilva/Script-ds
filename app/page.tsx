@@ -80,7 +80,7 @@ const StyledDiv = styled.div`
         }
       }
       .card-planos {
-        background: #15f5ba;
+        background: #1acb9c;
         color: #000000;
       }
       
