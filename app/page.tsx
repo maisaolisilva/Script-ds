@@ -113,6 +113,8 @@ const StyledDiv = styled.div`
     height: 100px;
    }
    header {
+    display: flex;
+    flex-direction: column;
     div {
       gap: 40px;
       a {
