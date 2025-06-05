@@ -226,6 +226,13 @@ export default function Page() {
  Seu site sempre estável, rápido e acessível, onde e quando o seu cliente precisar.</p>
               </div>
             </li>
+            <li>
+              <div className="card-planos">
+                <h3> Assistência Técnica a partir de R$ 100/mês</h3>
+                <p>Mantenha seu site sempre seguro, atualizado e com performance ideal.
+ Planos mensais com suporte técnico humanizado e melhorias contínuas para o seu projeto digital.</p>
+              </div>
+            </li>
           </ul>
         </section>
         <section id="contato" className="contato">
