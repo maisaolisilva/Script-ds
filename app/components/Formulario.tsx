@@ -8,7 +8,43 @@ interface Erros {
     email: string;
     telefone: string;
 }
-
+const StyledDiv = styled.div`
+        form{
+              margin: 10px 20px;
+              display: flex;
+              justify-content: center;
+              flex-direction: column;
+              align-items: center;
+              div{
+                width: 75%;
+                display: flex;
+                margin-bottom: 12px;
+                flex-direction: column;
+                input{
+                  padding: 13px;
+                  border-radius: 20px;
+                  color: #000000;
+                }
+              }
+              button{
+                color: #000000;
+                background: #15f5ba;
+                padding: 15px;
+                border-radius: 20px;
+                &:hover {
+                    text-decoration: underline;
+                    background: #1acb9c;
+                }
+              }
+            }
+            @media (max-width: 841px) {
+                form {
+                    div {
+                        width: 100%;
+                    }
+                }
+            }
+    `
 export default function Formulario() {
     const [email, setEmail] = useState<string>('');
     const [nome, setNome] = useState<string>('');
@@ -98,43 +134,6 @@ export default function Formulario() {
         }
     };
     
-    const StyledDiv = styled.div`
-        form{
-              margin: 10px 20px;
-              display: flex;
-              justify-content: center;
-              flex-direction: column;
-              align-items: center;
-              div{
-                width: 75%;
-                display: flex;
-                margin-bottom: 12px;
-                flex-direction: column;
-                input{
-                  padding: 13px;
-                  border-radius: 20px;
-                  color: #000000;
-                }
-              }
-              button{
-                color: #000000;
-                background: #15f5ba;
-                padding: 15px;
-                border-radius: 20px;
-                &:hover {
-                    text-decoration: underline;
-                    background: #1acb9c;
-                }
-              }
-            }
-            @media (max-width: 841px) {
-                form {
-                    div {
-                        width: 100%;
-                    }
-                }
-            }
-    `
     return (
         <StyledDiv>
             <form onSubmit={handleSubmit}>
