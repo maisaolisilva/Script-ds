@@ -215,7 +215,7 @@ export default function Page() {
           <ul>
             <li>
               <div className="card-planos">
-                <h3>Sites Profissionais a partir de R$ 800,00</h3>
+                <h3>Sites Profissionais a partir de R$ 500,00</h3>
                 <p>Sites personalizados e adaptáveis a qualquer dispositivo.</p>
               </div>
             </li>
